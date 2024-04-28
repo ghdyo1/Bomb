@@ -1,0 +1,53 @@
+.bomb {
+    width: 330px;
+    height: 225px;
+    background-color: #bbb;
+    border-radius: 10px;
+    border: solid #888 10px;
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.module {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border: #222 solid 2px;
+    background-color: #ddd;
+}
+
+#wires {
+    border-radius: 10px 0 0 0;
+}
+
+.timer {
+    width: 100px;
+    height: 100px;
+    background-color: #444;
+    display: inline-block;
+    border: #222 solid 2px;
+}
+
+#keypad {
+    border-radius: 0 10px 0 0;
+}
+
+#button {
+    border-radius: 0 0 0 10px;
+}
+
+#simpleton {
+
+}
+
+#forget-it-not {
+    border-radius: 0 0 10px 0;
+}
+
+.status {
+    width: 20px;
+    height: 20px;
+    margin-left: 76px;
+    background-color: #666;
+    border-radius: 10px;
+}
