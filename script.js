@@ -13,6 +13,7 @@ let buttonTextRandom = (Math.floor((Math.random()) * 10)) % 4;
 let buttonStripRandom = (Math.floor((Math.random()) * 10)) % 4;
 
 let keypadRandom = Math.floor((Math.random()) * 10);
+let keypadArray = [keypadRandom];
 
 let finRandom = Math.floor((Math.random()) * 10);
 let finArray = [finRandom];
@@ -38,6 +39,12 @@ let strip = document.querySelector(".strip");
 
 let stage = document.querySelector(".stage");
 let finDigit = document.querySelector(".number");
+
+let question = document.querySelector(".question")
+let answer1 = document.querySelector(".answer1");
+let answer2 = document.querySelector(".answer2");
+let answer3 = document.querySelector(".answer3");
+let answer4 = document.querySelector(".answer4");
 
 function wiresColors(){
     if(wiresRandom == 0){
@@ -72,12 +79,14 @@ wire4.style.backgroundColor = wiresRandom;
 
 key1.innerHTML = keypadRandom;
 keypadRandom = Math.floor((Math.random()) * 10);
+keypadArray.push(keypadRandom);
 key2.innerHTML = keypadRandom;
 keypadRandom = Math.floor((Math.random()) * 10);
+keypadArray.push(keypadRandom);
 key3.innerHTML = keypadRandom;
 keypadRandom = Math.floor((Math.random()) * 10);
+keypadArray.push(keypadRandom);
 key4.innerHTML = keypadRandom;
-keypadRandom = Math.floor((Math.random()) * 10);
 
 
 if(buttonRandom == 0){
@@ -113,6 +122,12 @@ finArray.push(finRandom);
 finRandom = Math.floor((Math.random()) * 10);
 finArray.push(finRandom);
 finDigit.innerHTML = finArray[0];
+
+question.innerHTML = "";
+answer1.innerHTML = "";
+answer2.innerHTML = "";
+answer3.innerHTML = "";
+answer4.innerHTML = "";
 
 function buttonStrip(){
     if(buttonStripRandom == 0){
@@ -154,4 +169,4 @@ setInterval(() => {
     else{
         minHTML.innerHTML = min;
     }
-}, 1000);
+}, 10000);
