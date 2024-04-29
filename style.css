@@ -23,6 +23,14 @@
     left: 30px;
 }
 
+.wire {
+    width: 150px;
+    margin-left: 25px;
+    margin-top: 20px;
+    height: 10px;
+    background-color: #fff;
+}
+
 .timer {
     width: 200px;
     height: 200px;
@@ -96,7 +104,7 @@
 }
 
 .stage:hover, .number:hover {
-    cursor: initial;
+    cursor: default;
 }
 
 .status {
