@@ -1,6 +1,6 @@
 .bomb {
-    width: 330px;
-    height: 225px;
+    width: 620px;
+    height: 420px;
     background-color: #bbb;
     border-radius: 10px;
     border: solid #888 10px;
@@ -9,45 +9,100 @@
 }
 
 .module {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     display: inline-block;
     border: #222 solid 2px;
     background-color: #ddd;
+    position: absolute;
 }
 
 #wires {
     border-radius: 10px 0 0 0;
+    top: 60px;
+    left: 30px;
 }
 
 .timer {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background-color: #444;
     display: inline-block;
     border: #222 solid 2px;
+    position: absolute;
+    left: 230px;
+    top: 60px;
 }
 
 #keypad {
     border-radius: 0 10px 0 0;
+    left: 430px;
+    top: 60px;
 }
 
 #button {
     border-radius: 0 0 0 10px;
+    left: 30px;
+    top: 260px;
 }
 
 #simpleton {
-
+    left: 230px;
+    top: 260px;
 }
 
 #forget-it-not {
     border-radius: 0 0 10px 0;
+    left: 430px;
+    top: 260px;
+    background-color: #b3ff66;
+}
+
+.fin-key {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #d7eb00;
+    margin-top: 10px;
+    margin-left: 6px;
+}
+
+.fin-wrapper {
+    width: 170px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.fin-wrapper:nth-child(3) {
+    width: 120px;
+}
+
+.stage {
+    display: inline-block;
+    color: #0f0;
+    background-color: #000;
+    height: 30px;
+    width: 40px;
+}
+
+.number {
+    display: inline-block;
+    color: #0f0;
+    background-color: #000;
+    width: 150px;
+    margin-left: 16px;
+    margin-top: 10px;
+    height: 30px;
+}
+
+.stage:hover, .number:hover {
+    cursor: initial;
 }
 
 .status {
     width: 20px;
     height: 20px;
-    margin-left: 76px;
+    margin-left: 176px;
     background-color: #666;
     border-radius: 10px;
 }
