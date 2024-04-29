@@ -6,6 +6,7 @@ let buttonStatus = document.querySelector("#button .status");
 let souvenirStatus = document.querySelector("#souvenir .status");
 let finStatus = document.querySelector("#forget-it-not .status");
 
+//Переменные рандома и массивы
 let wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
 
 let buttonRandom = (Math.floor((Math.random()) * 10)) % 4;
@@ -18,11 +19,13 @@ let keypadArray = [keypadRandom];
 let finRandom = Math.floor((Math.random()) * 10);
 let finArray = [finRandom];
 
+//Переменные таймера
 let minHTML = document.querySelector(".minutes");
 let secHTML = document.querySelector(".seconds");
 let min = 5;
 let sec = 0;
 
+//Переменные html
 let wire1 = document.querySelector(".wire1");
 let wire2 = document.querySelector(".wire2");
 let wire3 = document.querySelector(".wire3");
@@ -46,6 +49,7 @@ let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
 let answer4 = document.querySelector(".answer4");
 
+//Рандомы
 function wiresColors(){
     if(wiresRandom == 0){
         wiresRandom = "#ff0000";
@@ -129,6 +133,33 @@ answer2.innerHTML = "";
 answer3.innerHTML = "";
 answer4.innerHTML = "";
 
+//Определение решения
+if(wire3.style.backgroundColor == wire4.style.backgroundColor){
+    wire1.addEventListener("click", strikeWires);
+    wire2.addEventListener("click", solveWires);
+    wire3.addEventListener("click", strikeWires);
+    wire4.addEventListener("click", strikeWires);
+}
+else if(wire1.style.backgroundColor != "rgb(255, 255, 255)" && wire2.style.backgroundColor != "rgb(255, 255, 255)" && wire3.style.backgroundColor != "rgb(255, 255, 255)" && wire4.style.backgroundColor != "rgb(255, 255, 255)"){
+    wire1.addEventListener("click", solveWires);
+    wire2.addEventListener("click", strikeWires);
+    wire3.addEventListener("click", strikeWires);
+    wire4.addEventListener("click", strikeWires);
+}
+else if(wire1.style.backgroundColor == "rgb(255, 0, 0)"){
+    wire1.addEventListener("click", strikeWires);
+    wire2.addEventListener("click", strikeWires);
+    wire3.addEventListener("click", strikeWires);
+    wire4.addEventListener("click", solveWires);
+}
+else{
+    wire1.addEventListener("click", strikeWires);
+    wire2.addEventListener("click", strikeWires);
+    wire3.addEventListener("click", solveWires);
+    wire4.addEventListener("click", strikeWires);
+}
+
+//Функции
 function buttonStrip(){
     if(buttonStripRandom == 0){
         strip.style.backgroundColor = "#ff0000";
@@ -144,10 +175,27 @@ function buttonStrip(){
     }
 }
 
+function solveWires(){
+    wiresStatus.style.backgroundColor = "#00ff00";
+    wire1.removeEventListener("click", strikeWires);
+    wire2.removeEventListener("click", strikeWires);
+    wire3.removeEventListener("click", strikeWires);
+    wire4.removeEventListener("click", strikeWires);
+    wire1.removeEventListener("click", solveWires);
+    wire2.removeEventListener("click", solveWires);
+    wire3.removeEventListener("click", solveWires);
+    wire4.removeEventListener("click", solveWires);
+}
+
+function strikeWires(){
+    wiresStatus.style.backgroundColor = "#ff0000";
+}
+
 function explode(){
     bomb.style.display = "none";
 }
 
+//Таймер
 setInterval(() => {
     if(sec <= 0){
         min = min - 1;
