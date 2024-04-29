@@ -42,6 +42,42 @@
     top: 60px;
 }
 
+.strikes {
+    width: 100px;
+    height: 50px;
+    background-color: #222;
+    border: 5px solid #888;
+    margin-left: 45px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.strike {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-color: #330000;
+    margin-top: 5px;
+}
+
+.timer-digits {
+    background-color: #222;
+    width: 150px;
+    height: 100px;
+    margin-top: 0px;
+    margin-left: 25px;
+    border: #777 solid 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.digits {
+    display: inline-block;
+    color: #ff0000;
+    font-size: xx-large;
+}
+
 #keypad {
     border-radius: 0 10px 0 0;
     left: 430px;
