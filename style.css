@@ -99,6 +99,30 @@
 #souvenir {
     left: 230px;
     top: 260px;
+    background-color: #000011;
+    color: #ffffff;
+}
+
+.question {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.answer-wrapper {
+    width: 130px;
+    height: 20px;
+    margin-left: 30px;
+}
+
+.answer-wrapper:nth-child(3) {
+    margin-top: 70px;
+}
+
+.answer {
+    width: 50px;
+    height: 20px;
+    margin: 5px;
 }
 
 #forget-it-not {
