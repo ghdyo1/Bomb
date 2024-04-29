@@ -15,6 +15,7 @@ let buttonStripRandom = (Math.floor((Math.random()) * 10)) % 4;
 let keypadRandom = Math.floor((Math.random()) * 10);
 
 let finRandom = Math.floor((Math.random()) * 10);
+let finArray = [finRandom];
 
 let minHTML = document.querySelector(".minutes");
 let secHTML = document.querySelector(".seconds");
@@ -34,6 +35,9 @@ let key4 = document.querySelector(".key4");
 let button = document.querySelector(".button");
 let buttonText = document.querySelector(".button-text");
 let strip = document.querySelector(".strip");
+
+let stage = document.querySelector(".stage");
+let finDigit = document.querySelector(".number");
 
 function wiresColors(){
     if(wiresRandom == 0){
@@ -101,6 +105,14 @@ if(buttonTextRandom == 2){
 if(buttonTextRandom == 3){
     buttonText.innerHTML = "Д е р ж а т ь .";
 }
+
+finRandom = Math.floor((Math.random()) * 10);
+finArray.push(finRandom);
+finRandom = Math.floor((Math.random()) * 10);
+finArray.push(finRandom);
+finRandom = Math.floor((Math.random()) * 10);
+finArray.push(finRandom);
+finDigit.innerHTML = finArray[0];
 
 function buttonStrip(){
     if(buttonStripRandom == 0){
