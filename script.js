@@ -1,3 +1,5 @@
+let bomb = document.querySelector(".bomb");
+
 let wiresStatus = document.querySelector("#wires .status");
 let keypadStatus = document.querySelector("#keypad .status");
 let buttonStatus = document.querySelector("#button .status");
@@ -13,6 +15,11 @@ let buttonStripRandom = (Math.floor((Math.random()) * 10)) % 4;
 let keypadRandom = Math.floor((Math.random()) * 10);
 
 let finRandom = Math.floor((Math.random()) * 10);
+
+let minHTML = document.querySelector(".minutes");
+let secHTML = document.querySelector(".seconds");
+let min = 5;
+let sec = 0;
 
 let wire1 = document.querySelector(".wire1");
 let wire2 = document.querySelector(".wire2");
@@ -109,3 +116,30 @@ function buttonStrip(){
         strip.style.backgroundColor = "#ffffff";
     }
 }
+
+function explode(){
+    bomb.style.display = "none";
+}
+
+setInterval(() => {
+    if(sec <= 0){
+        min = min - 1;
+        sec = 60;
+        if(min < 0){
+            explode();
+        }
+    }
+    sec = sec - 1;
+    if(sec < 10){
+        secHTML.innerHTML = "0" + sec;
+    }
+    else{
+        secHTML.innerHTML = sec;        
+    }
+    if(min < 10){
+        minHTML.innerHTML = "0" + min;
+    }
+    else{
+        minHTML.innerHTML = min;
+    }
+}, 1000);
