@@ -18,6 +18,11 @@ let wire2 = document.querySelector(".wire2");
 let wire3 = document.querySelector(".wire3");
 let wire4 = document.querySelector(".wire4");
 
+let key1 = document.querySelector(".key1");
+let key2 = document.querySelector(".key2");
+let key3 = document.querySelector(".key3");
+let key4 = document.querySelector(".key4");
+
 function wiresColors(){
     if(wiresRandom == 0){
         wiresRandom = "#ff0000";
@@ -48,3 +53,13 @@ wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
 wiresColors()
 wire4.style.backgroundColor = wiresRandom;
 wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
+
+
+key1.innerHTML = keypadRandom;
+keypadRandom = Math.floor((Math.random()) * 10);
+key2.innerHTML = keypadRandom;
+keypadRandom = Math.floor((Math.random()) * 10);
+key3.innerHTML = keypadRandom;
+keypadRandom = Math.floor((Math.random()) * 10);
+key4.innerHTML = keypadRandom;
+keypadRandom = Math.floor((Math.random()) * 10);

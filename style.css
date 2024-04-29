@@ -48,6 +48,23 @@
     top: 60px;
 }
 
+.key {
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff;
+    border: #777744 solid 2px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.key-wrapper {
+    margin-left: 10px;
+    width: 140px;
+    height: 70px;
+    display: inline-block;
+    display: flex;
+}
+
 #button {
     border-radius: 0 0 0 10px;
     left: 30px;
