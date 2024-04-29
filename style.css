@@ -71,7 +71,32 @@
     top: 260px;
 }
 
-#simpleton {
+.button {
+    border: solid 2px #000;
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.button-text {
+    color: #ffffff;
+    font-weight: bold;
+    width: 10px;
+    height: 150px;
+    display: inline-block;
+}
+
+.strip {
+    width: 20px;
+    height: 150px;
+    margin-left: 10px;
+    background-color: #000000;
+    cursor: default;
+}
+
+#souvenir {
     left: 230px;
     top: 260px;
 }

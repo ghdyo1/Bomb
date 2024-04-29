@@ -1,12 +1,13 @@
 let wiresStatus = document.querySelector("#wires .status");
 let keypadStatus = document.querySelector("#keypad .status");
 let buttonStatus = document.querySelector("#button .status");
-let simpletonStatus = document.querySelector("#simpleton .status");
+let souvenirStatus = document.querySelector("#souvenir .status");
 let finStatus = document.querySelector("#forget-it-not .status");
 
 let wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
 
 let buttonRandom = (Math.floor((Math.random()) * 10)) % 4;
+let buttonTextRandom = (Math.floor((Math.random()) * 10)) % 4;
 let buttonStripRandom = (Math.floor((Math.random()) * 10)) % 4;
 
 let keypadRandom = Math.floor((Math.random()) * 10);
@@ -22,6 +23,10 @@ let key1 = document.querySelector(".key1");
 let key2 = document.querySelector(".key2");
 let key3 = document.querySelector(".key3");
 let key4 = document.querySelector(".key4");
+
+let button = document.querySelector(".button");
+let buttonText = document.querySelector(".button-text");
+let strip = document.querySelector(".strip");
 
 function wiresColors(){
     if(wiresRandom == 0){
@@ -52,7 +57,6 @@ wire3.style.backgroundColor = wiresRandom;
 wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
 wiresColors()
 wire4.style.backgroundColor = wiresRandom;
-wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
 
 
 key1.innerHTML = keypadRandom;
@@ -63,3 +67,45 @@ key3.innerHTML = keypadRandom;
 keypadRandom = Math.floor((Math.random()) * 10);
 key4.innerHTML = keypadRandom;
 keypadRandom = Math.floor((Math.random()) * 10);
+
+
+if(buttonRandom == 0){
+    button.style.backgroundColor = "#ff0000";
+}
+if(buttonRandom == 1){
+    button.style.backgroundColor = "#ffff00";
+}
+if(buttonRandom == 2){
+    button.style.backgroundColor = "#0000ff";
+}
+if(buttonRandom == 3){
+    button.style.backgroundColor = "#ffffff";
+}
+
+if(buttonTextRandom == 0){
+    buttonText.innerHTML = "П р е р в а т ь";
+}
+if(buttonTextRandom == 1){
+    buttonText.innerHTML = "В з о р в а т ь";
+}
+if(buttonTextRandom == 2){
+    buttonText.innerHTML = ". Н а ж а т ь .";
+}
+if(buttonTextRandom == 3){
+    buttonText.innerHTML = "Д е р ж а т ь .";
+}
+
+function buttonStrip(){
+    if(buttonStripRandom == 0){
+        strip.style.backgroundColor = "#ff0000";
+    }
+    if(buttonStripRandom == 1){
+        strip.style.backgroundColor = "#ffff00";
+    }
+    if(buttonStripRandom == 2){
+        strip.style.backgroundColor = "#0000ff";
+    }
+    if(buttonStripRandom == 3){
+        strip.style.backgroundColor = "#ffffff";
+    }
+}
