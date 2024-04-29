@@ -218,5 +218,27 @@
 }
 
 .manual {
-    
+    width: 400px;
+    height: 600px;
+    border: solid 2px #000000;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.manual h1 {
+    font-weight: bold;
+    font-size: xx-large;
+    margin-top: 10px;
+}
+
+.manual p {
+    margin-top: 20px;
+}
+
+.manual ul {
+    margin-top: 20px;
+}
+
+.manual * {
+    margin-left: 20px;
 }
