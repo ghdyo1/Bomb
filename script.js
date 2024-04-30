@@ -15,6 +15,8 @@ let buttonStripRandom = (Math.floor((Math.random()) * 10)) % 4;
 
 let keypadRandom = Math.floor((Math.random()) * 10);
 let keypadArray = [keypadRandom];
+let keySolves = 0;
+let keypadRule = "";
 
 let finRandom = Math.floor((Math.random()) * 10);
 let finArray = [finRandom];
@@ -159,7 +161,174 @@ else{
     wire4.addEventListener("click", strikeWires);
 }
 
+if(keypadArray[1] > keypadArray[0] && keypadArray[1] > keypadArray[2]){
+    keypadRule = "min";
+    keypadMin();
+}
+else if(keypadArray[1] == keypadArray[2]){
+    keypadRule = "max";
+    keypadMax();
+}
+else if(keypadArray[0] == 1){
+    keypadRule = "any";
+    keypadAny();
+}
+else{
+    keypadRule = "read";
+    keypadRead();
+}
+function keypadMin(){
+        if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 1){
+        key1.addEventListener("click", key1Solve);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", strikeKeypad);
+        keypadArray[0] = 10;
+    }
+    else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 2){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", key2Solve);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", strikeKeypad);
+        keypadArray[1] = 10;
+    }
+    else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 3){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", key3Solve);
+        key4.addEventListener("click", strikeKeypad);
+        keypadArray[2] = 10;
+    }
+    else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 4){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", key4Solve);
+        keypadArray[3] = 10;
+    }
+}
+function keypadMax(){
+    if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 1){
+        key1.addEventListener("click", key1Solve);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", strikeKeypad);
+        keypadArray[0] = -1;
+    }
+    else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 2){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", key2Solve);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", strikeKeypad);
+        keypadArray[1] = -1;
+    }
+    else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 3){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", key3Solve);
+        key4.addEventListener("click", strikeKeypad);
+        keypadArray[2] = -1;
+    }
+    else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 4){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", key4Solve);
+        keypadArray[3] = -1;
+    }
+}
+function keypadAny(){
+    key1.addEventListener("click", key1Solve);
+    key2.addEventListener("click", key2Solve);
+    key3.addEventListener("click", key3Solve);
+    key4.addEventListener("click", key4Solve);
+    if(key1.style.backgroundColor == "rgb(0, 255, 0)"){
+        key1.removeEventListener("click", key1Solve);
+    }
+    if(key2.style.backgroundColor == "rgb(0, 255, 0)"){
+        key2.removeEventListener("click", key1Solve);
+    }
+    if(key3.style.backgroundColor == "rgb(0, 255, 0)"){
+        key3.removeEventListener("click", key1Solve);
+    }
+    if(key4.style.backgroundColor == "rgb(0, 255, 0)"){
+        key4.removeEventListener("click", key1Solve);
+    }
+}
+function keypadRead(){
+    if(key1.style.backgroundColor == ""){
+        key1.addEventListener("click", key1Solve);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", strikeKeypad);
+    }
+    else if(key2.style.backgroundColor == ""){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", key2Solve);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", strikeKeypad);
+    }
+    else if(key3.style.backgroundColor == ""){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", key3Solve);
+        key4.addEventListener("click", strikeKeypad);
+    }
+    else if(key4.style.backgroundColor == ""){
+        key1.addEventListener("click", strikeKeypad);
+        key2.addEventListener("click", strikeKeypad);
+        key3.addEventListener("click", strikeKeypad);
+        key4.addEventListener("click", key4Solve);
+    }
+}
+
 //Функции
+
+function key1Solve(){
+    key1.style.backgroundColor = "#00ff00";
+    plus1KeySolve();
+}
+function key2Solve(){
+    key2.style.backgroundColor = "#00ff00";
+    plus1KeySolve();
+}
+function key3Solve(){
+    key3.style.backgroundColor = "#00ff00";
+    plus1KeySolve();
+}
+function key4Solve(){
+    key4.style.backgroundColor = "#00ff00";
+    plus1KeySolve();
+}
+function plus1KeySolve(){
+    key1.removeEventListener("click", key1Solve);
+    key2.removeEventListener("click", key2Solve);
+    key3.removeEventListener("click", key3Solve);
+    key4.removeEventListener("click", key4Solve);
+    key1.removeEventListener("click", strikeKeypad);
+    key2.removeEventListener("click", strikeKeypad);
+    key3.removeEventListener("click", strikeKeypad);
+    key4.removeEventListener("click", strikeKeypad);
+    keySolves = keySolves + 1;
+    if(keySolves >= 4){
+        solveKeypad();
+    }
+    else{
+        if(keypadRule == "min"){
+            keypadMin();
+        }
+        if(keypadRule == "max"){
+            keypadMax();
+        }
+        if(keypadRule == "any"){
+            keypadAny();
+        }
+        if(keypadRule == "read"){
+            keypadRead();
+        }
+    }
+}
+
 function buttonStrip(){
     if(buttonStripRandom == 0){
         strip.style.backgroundColor = "#ff0000";
@@ -186,9 +355,15 @@ function solveWires(){
     wire3.removeEventListener("click", solveWires);
     wire4.removeEventListener("click", solveWires);
 }
-
 function strikeWires(){
     wiresStatus.style.backgroundColor = "#ff0000";
+}
+
+function solveKeypad(){
+    keypadStatus.style.backgroundColor = "#00ff00";
+}
+function strikeKeypad(){
+    keypadStatus.style.backgroundColor = "#ff0000";
 }
 
 function explode(){
@@ -198,7 +373,7 @@ function explode(){
 //Таймер
 setInterval(() => {
     if(sec <= 0){
-        min = min - 1;
+        min =     min - 1;
         sec = 60;
         if(min < 0){
             explode();

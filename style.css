@@ -224,6 +224,17 @@
     margin-top: 20px;
     margin-left: 20px;
     display: inline-block;
+    position: absolute;
+}
+
+.manual:nth-child(1){
+    top: 0;
+    left: 0;
+}
+
+.manual:nth-child(2){
+    top: 0;
+    left: 420px;
 }
 
 .manual h1 {
@@ -236,10 +247,19 @@
     margin-top: 20px;
 }
 
-.manual ul {
-    margin-top: 20px;
+.manual * {
+    margin-left: 5px;
 }
 
-.manual * {
-    margin-left: 20px;
+.manual ul {
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.manual li {
+    margin-left: 0;
+}
+
+body.manuals {
+    display: flex;
 }
