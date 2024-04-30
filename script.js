@@ -371,7 +371,7 @@ function explode(){
 }
 
 //Таймер
-setInterval(() => {
+let timerInterval = setInterval(() => {
     if(sec <= 0){
         min =     min - 1;
         sec = 60;
