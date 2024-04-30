@@ -12,6 +12,7 @@ let wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
 let buttonRandom = (Math.floor((Math.random()) * 10)) % 4;
 let buttonTextRandom = (Math.floor((Math.random()) * 10)) % 4;
 let buttonStripRandom = (Math.floor((Math.random()) * 10)) % 4;
+let isStripColored = false;
 
 let keypadRandom = Math.floor((Math.random()) * 10);
 let keypadArray = [keypadRandom];
@@ -26,6 +27,7 @@ let minHTML = document.querySelector(".minutes");
 let secHTML = document.querySelector(".seconds");
 let min = 5;
 let sec = 0;
+let timerSpeed = 1000;
 
 //Переменные html
 let wire1 = document.querySelector(".wire1");
@@ -177,112 +179,112 @@ else{
     keypadRule = "read";
     keypadRead();
 }
-function keypadMin(){
-        if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 1){
-        key1.addEventListener("click", key1Solve);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", strikeKeypad);
-        keypadArray[0] = 10;
-    }
-    else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 2){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", key2Solve);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", strikeKeypad);
-        keypadArray[1] = 10;
-    }
-    else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 3){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", key3Solve);
-        key4.addEventListener("click", strikeKeypad);
-        keypadArray[2] = 10;
-    }
-    else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 4){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", key4Solve);
-        keypadArray[3] = 10;
-    }
-}
-function keypadMax(){
-    if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 1){
-        key1.addEventListener("click", key1Solve);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", strikeKeypad);
-        keypadArray[0] = -1;
-    }
-    else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 2){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", key2Solve);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", strikeKeypad);
-        keypadArray[1] = -1;
-    }
-    else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 3){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", key3Solve);
-        key4.addEventListener("click", strikeKeypad);
-        keypadArray[2] = -1;
-    }
-    else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 4){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", key4Solve);
-        keypadArray[3] = -1;
-    }
-}
-function keypadAny(){
-    key1.addEventListener("click", key1Solve);
-    key2.addEventListener("click", key2Solve);
-    key3.addEventListener("click", key3Solve);
-    key4.addEventListener("click", key4Solve);
-    if(key1.style.backgroundColor == "rgb(0, 255, 0)"){
-        key1.removeEventListener("click", key1Solve);
-    }
-    if(key2.style.backgroundColor == "rgb(0, 255, 0)"){
-        key2.removeEventListener("click", key1Solve);
-    }
-    if(key3.style.backgroundColor == "rgb(0, 255, 0)"){
-        key3.removeEventListener("click", key1Solve);
-    }
-    if(key4.style.backgroundColor == "rgb(0, 255, 0)"){
-        key4.removeEventListener("click", key1Solve);
-    }
-}
-function keypadRead(){
-    if(key1.style.backgroundColor == ""){
-        key1.addEventListener("click", key1Solve);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", strikeKeypad);
-    }
-    else if(key2.style.backgroundColor == ""){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", key2Solve);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", strikeKeypad);
-    }
-    else if(key3.style.backgroundColor == ""){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", key3Solve);
-        key4.addEventListener("click", strikeKeypad);
-    }
-    else if(key4.style.backgroundColor == ""){
-        key1.addEventListener("click", strikeKeypad);
-        key2.addEventListener("click", strikeKeypad);
-        key3.addEventListener("click", strikeKeypad);
-        key4.addEventListener("click", key4Solve);
-    }
-}
 
 //Функции
+function keypadMin(){
+    if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 1){
+    key1.addEventListener("click", key1Solve);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", strikeKeypad);
+    keypadArray[0] = 10;
+}
+else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 2){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", key2Solve);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", strikeKeypad);
+    keypadArray[1] = 10;
+}
+else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 3){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", key3Solve);
+    key4.addEventListener("click", strikeKeypad);
+    keypadArray[2] = 10;
+}
+else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 4){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", key4Solve);
+    keypadArray[3] = 10;
+}
+}
+function keypadMax(){
+if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 1){
+    key1.addEventListener("click", key1Solve);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", strikeKeypad);
+    keypadArray[0] = -1;
+}
+else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 2){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", key2Solve);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", strikeKeypad);
+    keypadArray[1] = -1;
+}
+else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 3){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", key3Solve);
+    key4.addEventListener("click", strikeKeypad);
+    keypadArray[2] = -1;
+}
+else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 4){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", key4Solve);
+    keypadArray[3] = -1;
+}
+}
+function keypadAny(){
+key1.addEventListener("click", key1Solve);
+key2.addEventListener("click", key2Solve);
+key3.addEventListener("click", key3Solve);
+key4.addEventListener("click", key4Solve);
+if(key1.style.backgroundColor == "rgb(0, 255, 0)"){
+    key1.removeEventListener("click", key1Solve);
+}
+if(key2.style.backgroundColor == "rgb(0, 255, 0)"){
+    key2.removeEventListener("click", key1Solve);
+}
+if(key3.style.backgroundColor == "rgb(0, 255, 0)"){
+    key3.removeEventListener("click", key1Solve);
+}
+if(key4.style.backgroundColor == "rgb(0, 255, 0)"){
+    key4.removeEventListener("click", key1Solve);
+}
+}
+function keypadRead(){
+if(key1.style.backgroundColor == ""){
+    key1.addEventListener("click", key1Solve);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", strikeKeypad);
+}
+else if(key2.style.backgroundColor == ""){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", key2Solve);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", strikeKeypad);
+}
+else if(key3.style.backgroundColor == ""){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", key3Solve);
+    key4.addEventListener("click", strikeKeypad);
+}
+else if(key4.style.backgroundColor == ""){
+    key1.addEventListener("click", strikeKeypad);
+    key2.addEventListener("click", strikeKeypad);
+    key3.addEventListener("click", strikeKeypad);
+    key4.addEventListener("click", key4Solve);
+}
+}
 
 function key1Solve(){
     key1.style.backgroundColor = "#00ff00";
@@ -330,6 +332,9 @@ function plus1KeySolve(){
 }
 
 function buttonStrip(){
+    button.removeEventListener("click", strikeButton);
+    button.removeEventListener("click", buttonStrip);
+    isStripColored = true;
     if(buttonStripRandom == 0){
         strip.style.backgroundColor = "#ff0000";
     }
@@ -366,6 +371,13 @@ function strikeKeypad(){
     keypadStatus.style.backgroundColor = "#ff0000";
 }
 
+function solveButton(){
+    buttonStatus.style.backgroundColor = "#00ff00";
+}
+function strikeButton(){
+    buttonStatus.style.backgroundColor = "#ff0000";
+}
+
 function explode(){
     bomb.style.display = "none";
 }
@@ -373,7 +385,7 @@ function explode(){
 //Таймер
 let timerInterval = setInterval(() => {
     if(sec <= 0){
-        min =     min - 1;
+        min = min - 1;
         sec = 60;
         if(min < 0){
             explode();
@@ -392,4 +404,58 @@ let timerInterval = setInterval(() => {
     else{
         minHTML.innerHTML = min;
     }
-}, 10000);
+    // кнопка
+    button.addEventListener("click", strikeButton);
+    if(isStripColored == true){
+        if(buttonStripRandom == 0){
+            if(sec % 10 == 7){
+                button.removeEventListener("click", strikeButton);
+                button.addEventListener("click", solveButton);
+            }
+            else{
+                button.addEventListener("click", strikeButton);
+                button.removeEventListener("click", solveButton);
+            }
+        }
+        else if(buttonStripRandom == 3){
+            if((sec % 10) == (Math.floor(sec / 10))){
+                button.removeEventListener("click", strikeButton);
+                button.addEventListener("click", solveButton);
+            }
+            else{
+                button.addEventListener("click", strikeButton);
+                button.removeEventListener("click", solveButton);
+            }
+        }
+        else{
+            button.removeEventListener("click", strikeButton);
+            button.addEventListener("click", solveButton);
+        }
+    }
+    else{
+        if(button.style.backgroundColor == "rgb(255, 0, 0)" || button.style.backgroundColor == "rgb(255, 255, 0)"){
+            if(sec % 10 == 6){
+                button.removeEventListener("click", strikeButton);
+                button.addEventListener("click", buttonStrip);
+            }
+            else{
+                button.addEventListener("click", strikeButton);
+                button.removeEventListener("click", buttonStrip);
+            }
+        }
+        else if(buttonTextRandom == 3){
+            if((sec % 10) + (Math.floor(sec / 10)) == 7){
+                button.removeEventListener("click", strikeButton);
+                button.addEventListener("click", buttonStrip);
+            }
+            else{
+                button.addEventListener("click", strikeButton);
+                button.removeEventListener("click", buttonStrip);
+            }
+        }
+        else{
+            button.removeEventListener("click", strikeButton);
+            button.addEventListener("click", buttonStrip);
+        }
+    }
+}, timerSpeed);
