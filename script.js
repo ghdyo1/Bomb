@@ -22,12 +22,13 @@ let keypadRule = "";
 let finRandom = Math.floor((Math.random()) * 10);
 let finArray = [finRandom];
 
+let strikes = 0;
+
 //Переменные таймера
 let minHTML = document.querySelector(".minutes");
 let secHTML = document.querySelector(".seconds");
 let min = 5;
 let sec = 0;
-let timerSpeed = 1000;
 
 //Переменные html
 let wire1 = document.querySelector(".wire1");
@@ -52,6 +53,9 @@ let answer1 = document.querySelector(".answer1");
 let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
 let answer4 = document.querySelector(".answer4");
+
+let strike1 = document.querySelector(".strike1");
+let strike2 = document.querySelector(".strike2");
 
 //Рандомы
 function wiresColors(){
@@ -362,6 +366,7 @@ function solveWires(){
 }
 function strikeWires(){
     wiresStatus.style.backgroundColor = "#ff0000";
+    strike();
 }
 
 function solveKeypad(){
@@ -369,6 +374,7 @@ function solveKeypad(){
 }
 function strikeKeypad(){
     keypadStatus.style.backgroundColor = "#ff0000";
+    strike();
 }
 
 function solveButton(){
@@ -376,6 +382,20 @@ function solveButton(){
 }
 function strikeButton(){
     buttonStatus.style.backgroundColor = "#ff0000";
+    strike();
+}
+
+function strike(){
+    strikes = strikes + 1;
+    if(strikes == 1){
+        strike1.style.backgroundColor = "#ff0000";
+    }
+    if(strikes == 2){
+        strike2.style.backgroundColor = "#ff0000";
+    }
+    if(strikes >= 3){
+        explode();
+    }
 }
 
 function explode(){
@@ -458,4 +478,4 @@ let timerInterval = setInterval(() => {
             button.addEventListener("click", buttonStrip);
         }
     }
-}, timerSpeed);
+}, 1000);
