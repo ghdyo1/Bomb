@@ -27,10 +27,28 @@ let finStage = 1;
 let strikes = 0;
 let solves = 0;
 
+//Переменные для сувенира
+
+let correctWire = 0;
+let correctWireColor = "";
+
+let buttonStripColor = "";
+
+let correctKeypadOrder = [];
+
+let finRandomQuestion = Math.floor((Math.random() * 10) % 4);
+
+
+let wiresQuestionRandom = Math.floor((Math.random() * 10) % 2);
+let keypadQuestionRandom = Math.floor((Math.random() * 10) % 4);
+
+
+let questions = 0;
+
 //Переменные таймера
 let minHTML = document.querySelector(".minutes");
 let secHTML = document.querySelector(".seconds");
-let min = 5;
+let min = 7;
 let sec = 0;
 
 //Переменные html
@@ -66,6 +84,7 @@ let answer1 = document.querySelector(".answer1");
 let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
 let answer4 = document.querySelector(".answer4");
+let answer5 = document.querySelector(".answer5");
 
 let strike1 = document.querySelector(".strike1");
 let strike2 = document.querySelector(".strike2");
@@ -154,6 +173,7 @@ answer1.innerHTML = "";
 answer2.innerHTML = "";
 answer3.innerHTML = "";
 answer4.innerHTML = "";
+answer5.innerHTML = "";
 
 //Определение решения
 if(wire3.style.backgroundColor == wire4.style.backgroundColor){
@@ -161,24 +181,32 @@ if(wire3.style.backgroundColor == wire4.style.backgroundColor){
     wire2.addEventListener("click", solveWires);
     wire3.addEventListener("click", strikeWires);
     wire4.addEventListener("click", strikeWires);
+    correctWire = 2;
+    correctWireColor = wire2.style.backgroundColor;
 }
 else if(wire1.style.backgroundColor != "rgb(255, 255, 255)" && wire2.style.backgroundColor != "rgb(255, 255, 255)" && wire3.style.backgroundColor != "rgb(255, 255, 255)" && wire4.style.backgroundColor != "rgb(255, 255, 255)"){
     wire1.addEventListener("click", solveWires);
     wire2.addEventListener("click", strikeWires);
     wire3.addEventListener("click", strikeWires);
     wire4.addEventListener("click", strikeWires);
+    correctWire = 1;
+    correctWireColor = wire1.style.backgroundColor;
 }
 else if(wire1.style.backgroundColor == "rgb(255, 0, 0)"){
     wire1.addEventListener("click", strikeWires);
     wire2.addEventListener("click", strikeWires);
     wire3.addEventListener("click", strikeWires);
     wire4.addEventListener("click", solveWires);
+    correctWire = 4;
+    correctWireColor = wire4.style.backgroundColor;
 }
 else{
     wire1.addEventListener("click", strikeWires);
     wire2.addEventListener("click", strikeWires);
     wire3.addEventListener("click", solveWires);
     wire4.addEventListener("click", strikeWires);
+    correctWire = 3;
+    correctWireColor = wire3.style.backgroundColor;
 }
 
 if(keypadArray[1] > keypadArray[0] && keypadArray[1] > keypadArray[2]){
@@ -206,6 +234,7 @@ function keypadMin(){
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", strikeKeypad);
     keypadArray[0] = 10;
+    correctKeypadOrder.push(1);
 }
 else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 2){
     key1.addEventListener("click", strikeKeypad);
@@ -213,6 +242,7 @@ else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 2){
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", strikeKeypad);
     keypadArray[1] = 10;
+    correctKeypadOrder.push(2);
 }
 else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 3){
     key1.addEventListener("click", strikeKeypad);
@@ -220,6 +250,7 @@ else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 3){
     key3.addEventListener("click", key3Solve);
     key4.addEventListener("click", strikeKeypad);
     keypadArray[2] = 10;
+    correctKeypadOrder.push(3);
 }
 else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 4){
     key1.addEventListener("click", strikeKeypad);
@@ -227,6 +258,7 @@ else if((keypadArray.indexOf(Math.min(...keypadArray)) + 1) == 4){
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", key4Solve);
     keypadArray[3] = 10;
+    correctKeypadOrder.push(4);
 }
 }
 function keypadMax(){
@@ -236,6 +268,7 @@ if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 1){
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", strikeKeypad);
     keypadArray[0] = -1;
+    correctKeypadOrder.push(1);
 }
 else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 2){
     key1.addEventListener("click", strikeKeypad);
@@ -243,6 +276,7 @@ else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 2){
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", strikeKeypad);
     keypadArray[1] = -1;
+    correctKeypadOrder.push(2);
 }
 else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 3){
     key1.addEventListener("click", strikeKeypad);
@@ -250,6 +284,7 @@ else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 3){
     key3.addEventListener("click", key3Solve);
     key4.addEventListener("click", strikeKeypad);
     keypadArray[2] = -1;
+    correctKeypadOrder.push(3);
 }
 else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 4){
     key1.addEventListener("click", strikeKeypad);
@@ -257,25 +292,27 @@ else if((keypadArray.indexOf(Math.max(...keypadArray)) + 1) == 4){
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", key4Solve);
     keypadArray[3] = -1;
+    correctKeypadOrder.push(4);
 }
 }
 function keypadAny(){
-key1.addEventListener("click", key1Solve);
-key2.addEventListener("click", key2Solve);
-key3.addEventListener("click", key3Solve);
-key4.addEventListener("click", key4Solve);
-if(key1.style.backgroundColor == "rgb(0, 255, 0)"){
-    key1.removeEventListener("click", key1Solve);
-}
-if(key2.style.backgroundColor == "rgb(0, 255, 0)"){
-    key2.removeEventListener("click", key1Solve);
-}
-if(key3.style.backgroundColor == "rgb(0, 255, 0)"){
-    key3.removeEventListener("click", key1Solve);
-}
-if(key4.style.backgroundColor == "rgb(0, 255, 0)"){
-    key4.removeEventListener("click", key1Solve);
-}
+    correctKeypadOrder.push(0);
+    key1.addEventListener("click", key1Solve);
+    key2.addEventListener("click", key2Solve);
+    key3.addEventListener("click", key3Solve);
+    key4.addEventListener("click", key4Solve);
+    if(key1.style.backgroundColor == "rgb(0, 255, 0)"){
+        key1.removeEventListener("click", key1Solve);
+    }
+    if(key2.style.backgroundColor == "rgb(0, 255, 0)"){
+        key2.removeEventListener("click", key1Solve);
+    }
+    if(key3.style.backgroundColor == "rgb(0, 255, 0)"){
+        key3.removeEventListener("click", key1Solve);
+    }
+    if(key4.style.backgroundColor == "rgb(0, 255, 0)"){
+        key4.removeEventListener("click", key1Solve);
+    }
 }
 function keypadRead(){
 if(key1.style.backgroundColor == ""){
@@ -283,24 +320,28 @@ if(key1.style.backgroundColor == ""){
     key2.addEventListener("click", strikeKeypad);
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", strikeKeypad);
+    correctKeypadOrder.push(1);
 }
 else if(key2.style.backgroundColor == ""){
     key1.addEventListener("click", strikeKeypad);
     key2.addEventListener("click", key2Solve);
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", strikeKeypad);
+    correctKeypadOrder.push(2);
 }
 else if(key3.style.backgroundColor == ""){
     key1.addEventListener("click", strikeKeypad);
     key2.addEventListener("click", strikeKeypad);
     key3.addEventListener("click", key3Solve);
     key4.addEventListener("click", strikeKeypad);
+    correctKeypadOrder.push(3);
 }
 else if(key4.style.backgroundColor == ""){
     key1.addEventListener("click", strikeKeypad);
     key2.addEventListener("click", strikeKeypad);
     key3.addEventListener("click", strikeKeypad);
     key4.addEventListener("click", key4Solve);
+    correctKeypadOrder.push(4);
 }
 }
 
@@ -355,15 +396,19 @@ function buttonStrip(){
     isStripColored = true;
     if(buttonStripRandom == 0){
         strip.style.backgroundColor = "#ff0000";
+        buttonStripColor = "red";
     }
     if(buttonStripRandom == 1){
         strip.style.backgroundColor = "#ffff00";
+        buttonStripColor = "yellow";
     }
     if(buttonStripRandom == 2){
         strip.style.backgroundColor = "#0000ff";
+        buttonStripColor = "blue";
     }
     if(buttonStripRandom == 3){
         strip.style.backgroundColor = "#ffffff";
+        buttonStripColor = "white";
     }
 }
 
@@ -444,7 +489,172 @@ function finEnter(){
 }
 
 function souvenirStart(){
-
+    questions = questions + 1;
+    question.innerHTML = "";
+    answer1.innerHTML = "";
+    answer2.innerHTML = "";
+    answer3.innerHTML = "";
+    answer4.innerHTML = "";
+    answer5.innerHTML = "";
+    answer1.removeEventListener("click", strikeSouvenir);
+    answer2.removeEventListener("click", strikeSouvenir);
+    answer3.removeEventListener("click", strikeSouvenir);
+    answer4.removeEventListener("click", strikeSouvenir);
+    answer5.removeEventListener("click", strikeSouvenir);
+    answer1.removeEventListener("click", souvenirStart);
+    answer2.removeEventListener("click", souvenirStart);
+    answer3.removeEventListener("click", souvenirStart);
+    answer4.removeEventListener("click", souvenirStart);
+    answer5.removeEventListener("click", souvenirStart);
+    if(questions == 1){
+        if(wiresQuestionRandom == 0){
+            question.innerHTML = "Какой провод верный на Проводах?";
+            answer1.innerHTML = "1";
+            answer2.innerHTML = "2";
+            answer3.innerHTML = "3";
+            answer4.innerHTML = "4";
+            answer5.innerHTML = "";
+            if(correctWire == 1){
+                answer1.addEventListener("click", souvenirStart);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWire == 2){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", souvenirStart);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWire == 3){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", souvenirStart);
+                answer4.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWire == 4){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", souvenirStart);
+            }
+        }
+        else if(wiresQuestionRandom == 1){
+            question.innerHTML = "Какого цвета верный провод на Проводах?";
+            answer1.innerHTML = "Красный";
+            answer2.innerHTML = "Чёрный";
+            answer3.innerHTML = "Белый";
+            answer4.innerHTML = "Жёлтый";
+            answer5.innerHTML = "Синий";
+            if(correctWireColor == "rgb(255, 0, 0)"){
+                answer1.addEventListener("click", souvenirStart);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+                answer5.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWireColor == "rgb(0, 0, 0)"){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", souvenirStart);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+                answer5.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWireColor == "rgb(255, 255, 255)"){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", souvenirStart);
+                answer4.addEventListener("click", strikeSouvenir);
+                answer5.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWireColor == "rgb(255, 255, 0)"){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", souvenirStart);
+                answer5.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctWireColor == "rgb(0, 0, 255)"){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+                answer5.addEventListener("click", souvenirStart);
+            }
+        }
+    }
+    else if(questions == 2){
+        if(correctKeypadOrder[0] != 0){
+            question.innerHTML = "Какая клавиша была нажата " + (keypadQuestionRandom + 1) + "-й на Клавиатуре?";
+            answer1.innerHTML = "1";
+            answer2.innerHTML = "2";
+            answer3.innerHTML = "3";
+            answer4.innerHTML = "4";
+            answer5.innerHTML = "";
+            if(correctKeypadOrder[keypadQuestionRandom] == 1){
+                answer1.addEventListener("click", souvenirStart);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctKeypadOrder[keypadQuestionRandom] == 2){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", souvenirStart);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctKeypadOrder[keypadQuestionRandom] == 3){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", souvenirStart);
+                answer4.addEventListener("click", strikeSouvenir);
+            }
+            else if(correctKeypadOrder[keypadQuestionRandom] == 4){
+                answer1.addEventListener("click", strikeSouvenir);
+                answer2.addEventListener("click", strikeSouvenir);
+                answer3.addEventListener("click", strikeSouvenir);
+                answer4.addEventListener("click", souvenirStart);
+            }            
+        }
+        else{
+            souvenirStart();
+        }
+    }
+    else if(questions == 3){
+        question.innerHTML = "Каким цветом горела полоска на Кнопке?";
+        answer1.innerHTML = "Красным";
+        answer2.innerHTML = "Жёлтым";
+        answer3.innerHTML = "Синим";
+        answer4.innerHTML = "Белым";
+        answer5.innerHTML = "";
+        if(buttonStripColor == "red"){
+            answer1.addEventListener("click", souvenirStart);
+            answer2.addEventListener("click", strikeSouvenir);
+            answer3.addEventListener("click", strikeSouvenir);
+            answer4.addEventListener("click", strikeSouvenir);
+        }
+        else if(buttonStripColor == "yellow"){
+            answer1.addEventListener("click", strikeSouvenir);
+            answer2.addEventListener("click", souvenirStart);
+            answer3.addEventListener("click", strikeSouvenir);
+            answer4.addEventListener("click", strikeSouvenir);
+        }
+        else if(buttonStripColor == "blue"){
+            answer1.addEventListener("click", strikeSouvenir);
+            answer2.addEventListener("click", strikeSouvenir);
+            answer3.addEventListener("click", souvenirStart);
+            answer4.addEventListener("click", strikeSouvenir);
+        }
+        else if(buttonStripColor == "white"){
+            answer1.addEventListener("click", strikeSouvenir);
+            answer2.addEventListener("click", strikeSouvenir);
+            answer3.addEventListener("click", strikeSouvenir);
+            answer4.addEventListener("click", souvenirStart);
+        }           
+    }
+    else if(questions == 4){
+        solveSouvenir();
+    }
 }
 
 function solveWires(){
@@ -503,6 +713,14 @@ function strikeFIN(){
     finStatus.style.backgroundColor = "#ff0000";
     strike();
     finDigit.innerHTML = "";
+}
+
+function solveSouvenir(){
+    souvenirStatus.style.backgroundColor = "#00ff00";
+}
+function strikeSouvenir(){
+    souvenirStatus.style.backgroundColor = "#ff0000";
+    strike();
 }
 
 function strike(){

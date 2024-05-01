@@ -33,6 +33,13 @@
     left: 0px;
 }
 
+.textarea-wrapper{
+    width: 400px;
+    position: absolute;
+    top: 1300px;
+    left: 450px;
+}
+
 .manual h1 {
     font-weight: bold;
     font-size: xx-large;
