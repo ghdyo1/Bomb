@@ -5,6 +5,7 @@ let keypadStatus = document.querySelector("#keypad .status");
 let buttonStatus = document.querySelector("#button .status");
 let souvenirStatus = document.querySelector("#souvenir .status");
 let finStatus = document.querySelector("#forget-it-not .status");
+let timerStatus = document.querySelector(".timer .status");
 
 //Переменные рандома и массивы
 let wiresRandom = (Math.floor((Math.random()) * 10)) % 5;
@@ -47,6 +48,7 @@ let questions = 0;
 
 //Переменные таймера
 let minHTML = document.querySelector(".minutes");
+let dvoetochie = document.querySelector(".digits:nth-child(2)");
 let secHTML = document.querySelector(".seconds");
 let min = 7;
 let sec = 0;
@@ -717,6 +719,11 @@ function strikeFIN(){
 
 function solveSouvenir(){
     souvenirStatus.style.backgroundColor = "#00ff00";
+    timerStatus.style.backgroundColor = "#00ff00";
+    clearInterval(timerInterval);
+    minHTML.style.color = "#330000";
+    dvoetochie.style.color = "#330000";
+    secHTML.style.color = "#330000";
 }
 function strikeSouvenir(){
     souvenirStatus.style.backgroundColor = "#ff0000";
