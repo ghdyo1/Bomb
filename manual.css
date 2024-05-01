@@ -23,6 +23,11 @@
     left: 0px;
 }
 
+.manual:nth-child(4){
+    top: 620px;
+    left: 420px;
+}
+
 .manual h1 {
     font-weight: bold;
     font-size: xx-large;
@@ -55,12 +60,4 @@ body {
     width: 196px;
     margin-left: 0;
     display: inline-block;
-}
-
-.step:nth-child(3) {
-    border-right: solid 2px #000000;
-}
-
-.step:nth-child(4) {
-    border-left: solid 2px #000000;
 }

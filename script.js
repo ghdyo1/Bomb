@@ -21,8 +21,11 @@ let keypadRule = "";
 
 let finRandom = Math.floor((Math.random()) * 10);
 let finArray = [finRandom];
+let finInputArray = [];
+let finStage = 1;
 
 let strikes = 0;
+let solves = 0;
 
 //Переменные таймера
 let minHTML = document.querySelector(".minutes");
@@ -45,10 +48,20 @@ let button = document.querySelector(".button");
 let buttonText = document.querySelector(".button-text");
 let strip = document.querySelector(".strip");
 
-let stage = document.querySelector(".stage");
+let finKey1 = document.querySelector(".fin1");
+let finKey2 = document.querySelector(".fin2");
+let finKey3 = document.querySelector(".fin3");
+let finKey4 = document.querySelector(".fin4");
+let finKey5 = document.querySelector(".fin5");
+let finKey6 = document.querySelector(".fin6");
+let finKey7 = document.querySelector(".fin7");
+let finKey8 = document.querySelector(".fin8");
+let finKey9 = document.querySelector(".fin9");
+let finKey0 = document.querySelector(".fin0");
+let stageHTML = document.querySelector(".stage");
 let finDigit = document.querySelector(".number");
 
-let question = document.querySelector(".question")
+let question = document.querySelector(".question");
 let answer1 = document.querySelector(".answer1");
 let answer2 = document.querySelector(".answer2");
 let answer3 = document.querySelector(".answer3");
@@ -134,6 +147,7 @@ finArray.push(finRandom);
 finRandom = Math.floor((Math.random()) * 10);
 finArray.push(finRandom);
 finDigit.innerHTML = finArray[0];
+stageHTML.innerHTML = "0" + (solves + 1);
 
 question.innerHTML = "";
 answer1.innerHTML = "";
@@ -353,6 +367,86 @@ function buttonStrip(){
     }
 }
 
+function enter(){
+    if(finInputArray.length == 4){
+        if(finInputArray[0] == finArray[0] && finInputArray[1] == finArray[1] && finInputArray[2] == finArray[2] && finInputArray[3] == finArray[3]){
+            solveFIN();
+        }
+        else{
+            strikeFIN();
+            finInputArray = [];
+        }
+    }
+}
+function enter1(){
+    finInputArray.push(1);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 1;
+    enter();
+}
+function enter2(){
+    finInputArray.push(2);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 2;
+    enter();
+}
+function enter3(){
+    finInputArray.push(3);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 3;
+    enter();
+}
+function enter4(){
+    finInputArray.push(4);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 4;
+    enter();
+}
+function enter5(){
+    finInputArray.push(5);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 5;
+    enter();
+}
+function enter6(){
+    finInputArray.push(6);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 6;
+    enter();
+}
+function enter7(){
+    finInputArray.push(7);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 7;
+    enter();
+}
+function enter8(){
+    finInputArray.push(8);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 8;
+    enter();
+}
+function enter9(){
+    finInputArray.push(9);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 9;
+    enter();
+}
+function enter0(){
+    finInputArray.push(0);
+    finDigit.innerHTML = finDigit.innerHTML + "" + 0;
+    enter();
+}
+function finEnter(){
+    stageHTML.innerHTML = "- -";
+    finDigit.innerHTML = "";
+    finKey1.addEventListener("click", enter1);
+    finKey2.addEventListener("click", enter2);
+    finKey3.addEventListener("click", enter3);
+    finKey4.addEventListener("click", enter4);
+    finKey5.addEventListener("click", enter5);
+    finKey6.addEventListener("click", enter6);
+    finKey7.addEventListener("click", enter7);
+    finKey8.addEventListener("click", enter8);
+    finKey9.addEventListener("click", enter9);
+    finKey0.addEventListener("click", enter0);
+}
+
+function souvenirStart(){
+
+}
+
 function solveWires(){
     wiresStatus.style.backgroundColor = "#00ff00";
     wire1.removeEventListener("click", strikeWires);
@@ -363,6 +457,7 @@ function solveWires(){
     wire2.removeEventListener("click", solveWires);
     wire3.removeEventListener("click", solveWires);
     wire4.removeEventListener("click", solveWires);
+    solve();
 }
 function strikeWires(){
     wiresStatus.style.backgroundColor = "#ff0000";
@@ -371,6 +466,7 @@ function strikeWires(){
 
 function solveKeypad(){
     keypadStatus.style.backgroundColor = "#00ff00";
+    solve();
 }
 function strikeKeypad(){
     keypadStatus.style.backgroundColor = "#ff0000";
@@ -379,10 +475,33 @@ function strikeKeypad(){
 
 function solveButton(){
     buttonStatus.style.backgroundColor = "#00ff00";
+    strip.style.backgroundColor = "#000000";
+    solve();
 }
 function strikeButton(){
     buttonStatus.style.backgroundColor = "#ff0000";
     strike();
+}
+
+function solveFIN(){
+    finStatus.style.backgroundColor = "#00ff00";
+    souvenirStart();
+    finKey1.removeEventListener("click", enter1);
+    finKey2.removeEventListener("click", enter2);
+    finKey3.removeEventListener("click", enter3);
+    finKey4.removeEventListener("click", enter4);
+    finKey5.removeEventListener("click", enter5);
+    finKey6.removeEventListener("click", enter6);
+    finKey7.removeEventListener("click", enter7);
+    finKey8.removeEventListener("click", enter8);
+    finKey9.removeEventListener("click", enter9);
+    finKey0.removeEventListener("click", enter0);
+    stageHTML.innerHTML = "- -";
+}
+function strikeFIN(){
+    finStatus.style.backgroundColor = "#ff0000";
+    strike();
+    finDigit.innerHTML = "";
 }
 
 function strike(){
@@ -395,6 +514,14 @@ function strike(){
     }
     if(strikes >= 3){
         explode();
+    }
+}
+function solve(){
+    solves = solves + 1;
+    stageHTML.innerHTML = "0" + (solves + 1);
+    finDigit.innerHTML = finArray[solves];
+    if(solves == 3){
+        stageHTML.addEventListener("click", finEnter);
     }
 }
 

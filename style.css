@@ -205,7 +205,7 @@
     height: 30px;
 }
 
-.stage:hover, .number:hover {
+.number:hover {
     cursor: default;
 }
 
