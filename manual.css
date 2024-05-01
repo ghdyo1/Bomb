@@ -28,6 +28,11 @@
     left: 420px;
 }
 
+.manual:nth-child(5){
+    top: 1240px;
+    left: 0px;
+}
+
 .manual h1 {
     font-weight: bold;
     font-size: xx-large;

@@ -497,6 +497,7 @@ function solveFIN(){
     finKey9.removeEventListener("click", enter9);
     finKey0.removeEventListener("click", enter0);
     stageHTML.innerHTML = "- -";
+    finDigit.innerHTML = "";
 }
 function strikeFIN(){
     finStatus.style.backgroundColor = "#ff0000";
