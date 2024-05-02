@@ -719,8 +719,13 @@ function souvenirStart(){
     }
 }
 function finGuessNumber(){
-    finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 1);
-    finGuess = finVariantsGuesses[Math.floor(Math.random()*finVariantsGuesses.length)];
+    finGuess = finVariantsGuesses[Math.floor((Math.random() * 10)) - (10 - finVariantsGuesses.length)];
+    if(finGuess == undefined){
+        finGuessNumber();
+    }
+    else{
+        finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 1);
+    }
 }
 
 function solveWires(){
