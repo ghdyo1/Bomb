@@ -728,6 +728,7 @@ function finGuessNumber(){
     finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 0);
     console.log(finGuess);
     console.log(ifOutOfRangeFin);
+    console.log(finVariantsGuesses);
 }
 
 function solveWires(){
