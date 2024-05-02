@@ -725,7 +725,7 @@ function finGuessNumber(){
         ifOutOfRangeFin = ifOutOfRangeFin + 4;
     }
     finGuess = finVariantsGuesses[ifOutOfRangeFin];
-    finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 1);
+    finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 0);
     console.log(finGuess);
     console.log(ifOutOfRangeFin);
 }
