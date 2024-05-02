@@ -38,6 +38,9 @@ let buttonStripColor = "";
 let correctKeypadOrder = [];
 
 let finRandomQuestion = Math.floor((Math.random() * 10) % 4);
+let finVariantsGuesses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+let finAnswerRandom = -1;
+let finGuess = -1;
 
 
 let wiresQuestionRandom = Math.floor((Math.random() * 10) % 2);
@@ -655,8 +658,69 @@ function souvenirStart(){
         }           
     }
     else if(questions == 4){
+        question.innerHTML = "Какая цифра отображалась на " + (finRandomQuestion + 1) + "-м этапе на Незабудке?";
+        finVariantsGuesses.splice(finVariantsGuesses.indexOf(finArray[finRandomQuestion]));
+        finAnswerRandom = Math.floor((Math.random() * 10) % 4);
+        if(finAnswerRandom == 0){
+            answer1.addEventListener("click", souvenirStart);
+            answer2.addEventListener("click", strikeSouvenir);
+            answer3.addEventListener("click", strikeSouvenir);
+            answer4.addEventListener("click", strikeSouvenir);
+            answer1.innerHTML = finArray[finRandomQuestion];
+            finGuessNumber();
+            answer2.innerHTML = finGuess;
+            finGuessNumber();
+            answer3.innerHTML = finGuess;
+            finGuessNumber();
+            answer4.innerHTML = finGuess;
+        }
+        else if(finAnswerRandom == 1){
+            answer1.addEventListener("click", strikeSouvenir);
+            answer2.addEventListener("click", souvenirStart);
+            answer3.addEventListener("click", strikeSouvenir);
+            answer4.addEventListener("click", strikeSouvenir);
+            finGuessNumber();
+            answer1.innerHTML = finGuess;
+            answer2.innerHTML = finArray[finRandomQuestion];
+            finGuessNumber();
+            answer3.innerHTML = finGuess;
+            finGuessNumber();
+            answer4.innerHTML = finGuess;
+        }
+        else if(finAnswerRandom == 2){
+            answer1.addEventListener("click", strikeSouvenir);
+            answer2.addEventListener("click", strikeSouvenir);
+            answer3.addEventListener("click", souvenirStart);
+            answer4.addEventListener("click", strikeSouvenir);
+            finGuessNumber();
+            answer1.innerHTML = finGuess;
+            finGuessNumber();
+            answer2.innerHTML = finGuess;
+            answer3.innerHTML = finArray[finRandomQuestion];
+            finGuessNumber();
+            answer4.innerHTML = finGuess;
+        }
+        else if(finAnswerRandom == 3){
+            answer1.addEventListener("click", strikeSouvenir);
+            answer2.addEventListener("click", strikeSouvenir);
+            answer3.addEventListener("click", strikeSouvenir);
+            answer4.addEventListener("click", souvenirStart);
+            finGuessNumber();
+            answer1.innerHTML = finGuess;
+            finGuessNumber();
+            answer2.innerHTML = finGuess;
+            finGuessNumber();
+            answer3.innerHTML = finGuess;
+            answer4.innerHTML = finArray[finRandomQuestion];
+        }
+    }
+    else if(questions == 5){
         solveSouvenir();
     }
+}
+function finGuessNumber(){
+    finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 1);
+    finGuess = finVariantsGuesses[Math.floor(Math.random()*finVariantsGuesses.length)];
 }
 
 function solveWires(){
