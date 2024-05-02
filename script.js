@@ -41,6 +41,7 @@ let finRandomQuestion = Math.floor((Math.random() * 10) % 4);
 let finVariantsGuesses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 let finAnswerRandom = -1;
 let finGuess = -1;
+let ifOutOfRangeFin = 0;
 
 
 let wiresQuestionRandom = Math.floor((Math.random() * 10) % 2);
@@ -719,13 +720,14 @@ function souvenirStart(){
     }
 }
 function finGuessNumber(){
-    finGuess = finVariantsGuesses[Math.floor((Math.random() * 10)) - (finVariantsGuesses.length - 10)];
-    if(finGuess == undefined){
-        finGuessNumber();
+    ifOutOfRangeFin = Math.floor((Math.random() * 10)) % (finVariantsGuesses.length);
+    if(ifOutOfRangeFin < 0){
+        ifOutOfRangeFin = ifOutOfRangeFin + 4;
     }
-    else{
-        finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 1);
-    }
+    finGuess = finVariantsGuesses[ifOutOfRangeFin];
+    finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 1);
+    console.log(finGuess);
+    console.log(ifOutOfRangeFin);
 }
 
 function solveWires(){
