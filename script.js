@@ -719,7 +719,7 @@ function souvenirStart(){
     }
 }
 function finGuessNumber(){
-    finGuess = finVariantsGuesses[Math.floor((Math.random() * 10)) - (finVariantsGuesses.length - 10) - 1];
+    finGuess = finVariantsGuesses[Math.floor((Math.random() * 10)) - (finVariantsGuesses.length - 10)];
     if(finGuess == undefined){
         finGuessNumber();
     }
