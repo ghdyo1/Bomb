@@ -720,11 +720,7 @@ function souvenirStart(){
     }
 }
 function finGuessNumber(){
-    ifOutOfRangeFin = Math.floor((Math.random() * 10)) % (finVariantsGuesses.length);
-    if(ifOutOfRangeFin < 0){
-        ifOutOfRangeFin = ifOutOfRangeFin + 4;
-    }
-    finGuess = finVariantsGuesses[ifOutOfRangeFin];
+    finGuess = finVariantsGuesses[Math.random * 10];
     finVariantsGuesses.splice(finVariantsGuesses.indexOf(finGuess), 0);
 }
 
