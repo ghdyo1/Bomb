@@ -43,3 +43,4 @@ let answer5 = document.querySelector(".answer5");
 
 let strike1 = document.querySelector(".strike1");
 let strike2 = document.querySelector(".strike2");
+
